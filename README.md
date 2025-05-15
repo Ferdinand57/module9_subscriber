@@ -19,3 +19,17 @@ the line above connect our program to our message broker, with the first guest a
 why the total number of queue is 26?
 
 I ran the slowed-down subscriber program, and then i ran the publisher program 6 times, because each have 5 message sent to the message broker, the message broker recieved a total of 30 message which is being processed one by one by the subscriber, but because the subscriber is slowed-down, by the time the RabbitMQ message broker updates, the subscriber could only process 4 message which leave behind the other 26 message in queue which is represented by the chart.
+
+### multiple Subscriber
+
+![](multSubsTerm.png)
+
+![](multSubsRabbit.png)
+
+explanation:
+
+first i started three instances of the slowed-down subscriber program, and then i cargo run the publisher program 8 times which send in total 40 message. Because the subscribers program are slowed down and could only handle in total 3 event at a time, a lot of the messages is left having to wait in queue, but because there's 3 subscriber that is processing the message, all the message is processed more quickly than if we're only running 1 instance of the subcriber program.
+
+On the other hand, in the terminal side, three subscriber processing the message in parallel
+
+NOTE: i do not see if there's anything need improving from my subscriber or prublisher code
